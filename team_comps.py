@@ -23,9 +23,9 @@ with open("d:datamining/datasets/datasets/dota2Dataset/dota2Test.csv", 'r') as f
 			if index == 0 and int(item) == -1:
 				dire_win = 1
 				dc += 1
-			if index > 0 and int(item) == 1:
+			if index > 3 and int(item) == 1:
 				current_rad_team.append(first[index])
-			if index > 0 and int(item) == -1:
+			if index > 3 and int(item) == -1:
 				current_dire_team.append(first[index])
 			index += 1
 		if rad_win == 1:
@@ -50,9 +50,6 @@ with open("d:datamining/datasets/datasets/dota2Dataset/dota2Test.csv", 'r') as f
 				wteams.append(current_dire_team)
 				team_record.append(1)
 			check = 0
-			
-	for team, record in itertools.zip_longest(wteams, team_record):
-		if int(record) >= 2: 
-			print(team, record)
-		
-			
+	with open("d:datamining/datasets/datasets/dota2Dataset/win_teamcomp.txt", 'w+') as output:		
+		for team, record in itertools.zip_longest(wteams, team_record): 
+				output.write("{} {}\n".format(team, record))
