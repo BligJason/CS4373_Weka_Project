@@ -54,6 +54,7 @@ with open("/home/dha861/courses/cs/4373/dota2Test.csv", 'r') as file:
     with open("/home/dha861/courses/cs/4373/attributes_output.txt", 'w+') as output:
         for team, record in itertools.zip_longest(wteams, team_record):
             if int(record) >= 2: 
-                output.write(team, record)
-                output.write("\n");
+                print(team, record)
+                #output.write(team, record)
+                #output.write("\n");
 
