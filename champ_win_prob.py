@@ -40,4 +40,5 @@ with open("d:datamining/datasets/datasets/dota2Dataset/dota2Test.csv", 'r') as f
 		for item in reversed(sorted(pop_champs.items(), key=lambda x:x[1][2])):
 			if item[1] == pop_champs['radiant_victory_yes_no']:
 				continue
+			#if item[1][2] >= .5:	
 			output.write("{:s},{:d},{:d},{:.3g}\n".format(item[0], item[1][0], item[1][1], item[1][2]))
