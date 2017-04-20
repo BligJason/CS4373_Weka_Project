@@ -1,4 +1,10 @@
 file = fullfile('d:/','datamining','datasets','datasets','dota2Dataset','output.txt');
 t = readtable(file);
-bar(t.(2));
-set(gca,'XTickLabel',t.(1));
+comb = [t.(2)(:), t.(3)(:)];
+bar(comb);
+xlim([0 20.5]);
+xticks(1:1:20);
+xticklabels(t.(1));
+xtickangle(90);
+legend('games played', 'games won');
+title('Games Played vs Games Won');
