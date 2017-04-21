@@ -1,6 +1,11 @@
+# Script for reading a the csv file and and 
+# calculating the individual champion win 
+# rates based on games played and games won
+
+# output -> txt file contain list of champions with games played, games won, win rate
 import csv
 
-with open("d:datamining/datasets/datasets/dota2Dataset/dota2Test.csv", 'r') as file:
+with open("d:datamining/datasets/datasets/dota2Dataset/dota2Train.csv", 'r') as file:
 	reader = csv.reader(file)
 	first = next(reader)
 	count = list()
@@ -26,6 +31,8 @@ with open("d:datamining/datasets/datasets/dota2Dataset/dota2Test.csv", 'r') as f
 	with open("d:datamining/datasets/datasets/dota2Dataset/output.txt", 'w+') as output:		
 		pop_champs = dict()
 		index = 0
+		
+		#iterate through and count the number of games played and games won, then calculate the win rate 
 		for item in first:
 			if win_record[index] == 0:
 				pop_champs[item] = [count[index],win_record[index], win_record[index]]
@@ -37,8 +44,9 @@ with open("d:datamining/datasets/datasets/dota2Dataset/dota2Test.csv", 'r') as f
 		del pop_champs['idk2']
 				
 		output.write("{},{},{},{}\n".format('Champion','GamesPlayed','GamesWon','WinRate'))
+		
+		#sort champion dictionary based on win rate and iterate through and printing
 		for item in reversed(sorted(pop_champs.items(), key=lambda x:x[1][2])):
 			if item[1] == pop_champs['radiant_victory_yes_no']:
-				continue
-			#if item[1][2] >= .5:	
+				continue	
 			output.write("{:s},{:d},{:d},{:.3g}\n".format(item[0], item[1][0], item[1][1], item[1][2]))
